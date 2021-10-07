@@ -4,7 +4,8 @@ const authorIn = document.querySelector(".author");
 
 
 let myLibrary = [];
-
+    
+ 
 
 function Book(name, author) {   
     this.name = name;
@@ -29,7 +30,6 @@ function addBookToLibrary(){
     myLibrary.push(book1);
     updateLibrary();
     console.table (myLibrary);   
-    // return false;
 }
 
 function updateLibrary() {
@@ -44,7 +44,8 @@ function updateLibrary() {
         libraryItem.innerHTML = `<p>${myLibrary[i].name} <p>${myLibrary[i].author}`;
         addToggleRead(libraryItem, targetId);
         addDelete(libraryItem, targetId);
-        library.appendChild(libraryItem);  
+        library.appendChild(libraryItem);
+
     }
  
      
@@ -73,8 +74,16 @@ function addToggleRead(parent, targetId) {
             myLibrary[indexId].status = 'incomplete';
         }
         console.table (myLibrary);
-        this.classList.toggle ('complete');
-        this.textContent == 'not read' ? this.textContent = 'complete' : this.textContent ='not read';        
+      
+        this.textContent == 'not read' ? (
+            this.textContent = 'complete', 
+            this.classList.add('complete'),
+            this.classList.remove('incomplete')
+        ):( 
+            this.textContent ='not read',
+            this.classList.add('incomplete'),
+            this.classList.remove('complete') 
+        )        
     };
     parent.appendChild(toggleRead);
 }
@@ -88,6 +97,7 @@ function addDelete(parent, targetId) {
         let indexId = myLibrary.findIndex (o => o.id === targetId);
         myLibrary.splice( indexId, 1 );
         updateLibrary();
+        console.table (myLibrary);
     };
     parent.appendChild(deleteButton);
 }
