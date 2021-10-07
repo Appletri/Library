@@ -1,1 +1,1 @@
-This is a <a href="https://Appletri.github.io/Library/" rel="nofollow" target="_blank">Library</a> for the Odin Project.
+This is a <a href="https://Appletri.github.io/library/" rel="nofollow" target="_blank">library</a> for the Odin Project.
