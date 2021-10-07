@@ -1,0 +1,86 @@
+.main {
+    display: flex;
+    flex-flow: column nowrap;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.input {
+    display: flex;
+    gap: 5rem;
+    align-items: center;
+}
+
+.bookInput, .authorInput, .readInput, .library {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.main button {
+    width: 3rem;
+}
+
+.libraryItem, .libraryLabels {
+    display: flex;
+    align-items: center;
+}
+
+.libraryLabels p, .libraryItem p {
+    width:15rem;
+}
+
+.libraryItem div {
+    margin-right: 100px;
+}
+hr {
+    width:100vw;
+}
+
+.delete {
+    /* transform: scale(.55); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:30px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(255, 0, 98);
+    color: white;  
+    font-size: 15px;
+    font-weight: bold;
+    user-select: none;
+}
+
+.delete:hover {
+    background-color: rgb(190, 0, 73);
+    cursor: pointer;
+}
+
+.incomplete, .complete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:90px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(255, 0, 98);
+    color: white;  
+    font-size: 15px;
+    font-weight: bold;
+    user-select: none;
+}
+
+.complete {
+    background-color: rgb(0, 175, 88);
+}
+
+.incomplete:hover {
+    background-color: rgb(190, 0, 73);
+    cursor: pointer;
+}
+
+.complete:hover {
+    background-color: rgb(0, 138, 69);
+    cursor: pointer;
+}
