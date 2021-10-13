@@ -64,6 +64,7 @@ body {
 .main button:hover {
     background-color: rgb(0, 118, 187);
     cursor: pointer;
+    font-weight: bolder;
 }
 
 
@@ -78,6 +79,10 @@ body {
 
 .libraryLabels p, .libraryItem p {
     width:15rem;
+}
+
+.libraryLabels p:hover {
+    cursor: pointer;
 }
 
 .libraryItem div {
@@ -97,7 +102,7 @@ hr {
     display: flex;
     align-items: center;
     justify-content: center;
-    width:90px;
+    width:100px;
     height: 30px;
     border-radius: 5px;
     border: none;
@@ -158,13 +163,28 @@ hr {
 
 @keyframes gradial {
     0% {
-        background-color: rgb(2, 192, 65);
-    }
-    50% {
         background-color: rgb(0, 138, 69);
     }
+    50% {
+        background-color: rgb(1, 216, 48);
+    }
     100%{
-        background-color: rgb(2, 192, 65);
+        background-color: rgb(0, 138, 69);
     }
     
+}
+
+.stats {
+    display: none;
+    position: absolute;
+    top:5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.progress-bar:hover~.stats, .progress:hover~.stats{
+    display:block
+}
+
+.blue {
+    color: rgb(0, 162, 255);
 }

@@ -1,16 +1,27 @@
 const library = document.querySelector(".library");
 const bookIn = document.querySelector(".book");
 const authorIn = document.querySelector(".author");
-const progress = document.querySelector(".progress")
+const progress = document.querySelector(".progress");
+const stats = document.querySelector(".stats");
+const addItem = document.querySelector(".addItem");
+const sortName = document.querySelector('#name');
+const sortAuthor = document.querySelector('#author');
+const sortStatus = document.querySelector('#status');
 
 
 
+// startup
 let myLibrary = JSON.parse(localStorage.getItem('myLibrary')); 
+
 
 if (myLibrary == null) {
     myLibrary = [];
 }
 updateLibrary();
+sortByName();
+
+
+
 
 class Book {
     constructor(name, author) {
@@ -28,6 +39,14 @@ class Book {
                 this.id = randomId;
             }
         };
+    }
+}
+
+addItem.addEventListener ('click', addBookToLibrary);
+document.getElementsByClassName('addItem').onkeyup = function(event) {
+    if (event.code == 13)
+    {
+        addBookToLibrary();
     }
 }
 
@@ -65,7 +84,9 @@ function updateLibrary() {
 
     }
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-    updateProgress(); 
+    updateProgress();
+    updateStats();
+    
 }
 
 
@@ -75,7 +96,7 @@ function addToggleRead(parent, targetId) {
     
     if (myLibrary[indexId].status == 'incomplete') {
         toggleRead.className = "incomplete";
-        toggleRead.textContent = "not read";
+        toggleRead.textContent = "incomplete";
     }
     else {
         toggleRead.className = "complete";
@@ -92,17 +113,18 @@ function addToggleRead(parent, targetId) {
         }
         console.table (myLibrary);
       
-        this.textContent == 'not read' ? (
+        this.textContent == 'incomplete' ? (
             this.textContent = 'complete', 
             this.classList.add('complete'),
             this.classList.remove('incomplete')
         ):( 
-            this.textContent ='not read',
+            this.textContent ='incomplete',
             this.classList.add('incomplete'),
             this.classList.remove('complete') 
         )
         localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-        updateProgress();        
+        updateProgress();
+        updateStats();        
     };
     parent.appendChild(toggleRead);
 }
@@ -129,3 +151,61 @@ function updateProgress() {
     let current = myLibrary.filter(o => o.status == 'complete');
     progress.style.width = `${(current.length/myLibrary.length)*100}%`
 }
+
+function updateStats(){
+    let current = myLibrary.filter(o => o.status == 'complete');
+    stats.textContent = `Total: ${myLibrary.length}` + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + `Complete: ${current.length}` + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + ` Incomplete: ${myLibrary.length - current.length}`
+}
+
+// SORTING FUNCTIONS
+
+
+sortName.addEventListener('click', sortByName);
+sortAuthor.addEventListener('click', sortByAuthor);
+sortStatus.addEventListener('click', sortByStatus);
+
+
+function sortByName() {
+    
+
+    sortName.classList.add('blue');
+    sortAuthor.classList.remove('blue');
+    sortStatus.classList.remove('blue');   
+
+    myLibrary.sort(function(a,b) {
+        let textA = a.name.toUpperCase();
+        let textB = b.name.toUpperCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1: 0;
+    });
+    updateLibrary();
+}
+
+function sortByAuthor() {
+    
+    sortName.classList.remove('blue');
+    sortAuthor.classList.add('blue');
+    sortStatus.classList.remove('blue');
+
+    myLibrary.sort(function(a,b) {
+        let textA = a.author.toUpperCase();
+        let textB = b.author.toUpperCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1: 0;
+    });
+    updateLibrary();
+}
+
+function sortByStatus() {
+    
+    sortName.classList.remove('blue');
+    sortAuthor.classList.remove('blue');
+    sortStatus.classList.add('blue');
+
+    myLibrary.sort(function(a,b) {
+        let textA = a.status;
+        let textB = b.status;
+        return (textA < textB) ? -1 : (textA > textB) ? 1: 0;
+    });
+    updateLibrary();
+}
+
+
