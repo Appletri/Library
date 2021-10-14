@@ -14,7 +14,7 @@ const sortStatus = document.querySelector('#status');
 let myLibrary = JSON.parse(localStorage.getItem('myLibrary')); 
 
 
-if (myLibrary.length == 0) {
+if (myLibrary.length == 0 || myLibrary == null) {
     myLibrary = [
         {
           "name": "Valorant",
