@@ -81,6 +81,9 @@ body {
     width:15rem;
 }
 
+.libraryLabels p {
+    user-select: none;
+}
 .libraryLabels p:hover {
     cursor: pointer;
 }
@@ -188,3 +191,8 @@ hr {
 .blue {
     color: rgb(0, 162, 255);
 }
+
+.altblue {
+    color: rgb(0, 162, 255);
+}
+
