@@ -15,7 +15,12 @@ const addCube = document.querySelector('.add-cube');
 let myLibrary = JSON.parse(localStorage.getItem('myLibrary')); 
 let librarySaves = [];
 
+<<<<<<< HEAD
 if (myLibrary.length == 0 ) {
+=======
+
+if (JSON.parse(localStorage.getItem('myLibrary')) == null)  {
+>>>>>>> 6fbe1072ef41614c055d8bf9515354d66034e358
     myLibrary = [
         {
           "name": "Valorant",
