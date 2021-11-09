@@ -7,14 +7,15 @@ const addItem = document.querySelector(".addItem");
 const sortName = document.querySelector('#name');
 const sortAuthor = document.querySelector('#author');
 const sortStatus = document.querySelector('#status');
+const addCube = document.querySelector('.add-cube');
 
 
-
-// startup
+// startup  
+// let librarySaves = JSON.parse(localStorage.getItem('librarySaves')); 
 let myLibrary = JSON.parse(localStorage.getItem('myLibrary')); 
+let librarySaves = [];
 
-
-if (myLibrary.length == 0) {
+if (myLibrary.length == 0 ) {
     myLibrary = [
         {
           "name": "Valorant",
@@ -372,6 +373,45 @@ function sortByStatus() {
 }
 
 
-function search() {
+// save slots
+
+
+class librarySlot {
+    constructor(obj) {
+        this.obj = obj;
+        this.id = 0;
+        this.assignId = function () {
+            const arrayId = myLibrary.map(a => a.id);
+            const randomId = getRandomInt(1000);
+            if (arrayId.includes(randomId)) {
+                this.assignId();
+            }
+            else {
+                this.id = randomId;
+            }
+        };
+    }
+}
+
+
+addCube.addEventListener('click', addLibrarySave);
+
+function addLibrarySave() {
+    let library1 = new librarySlot(myLibrary);
+    librarySaves.push(library1);
+    console.log (librarySaves);
+}
+
+function addBookToLibrary(){
+    if (bookIn.value == '' || authorIn.value == '') {
+        return;
+    }
+    else {
+        let book1 = new Book(bookIn.value, authorIn.value);
+        book1.assignId();
+        myLibrary.push(book1);
+        updateLibrary();
+        console.table (myLibrary);   
+    }
 
 }
