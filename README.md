@@ -8,3 +8,4 @@
 
 ## About
 The Library keeps track of items like movies, books, games, etc. It will keep track of completion status and filter through the list accordingly.
+There is a default list of data, feel free to delete them all and start your own list!
